@@ -1,0 +1,33 @@
+[[index]]
+name = "quansight"
+registry = "https://pypi.anaconda.org/mgorny/simple/"
+packages = [
+    "numpy",
+    "scikit-learn",
+    "scipy"
+]
+
+[[index]]
+name = "pytorch"
+registry = "https://download.pytorch.org/whl/variant/"
+packages = [
+    # NVIDIA Packages
+    "nvidia-cublas",
+    "nvidia-cuda-cupti",
+    "nvidia-cuda-nvrtc",
+    "nvidia-cuda-runtime",
+    "nvidia-cudnn",
+    "nvidia-cufft",
+    "nvidia-cufile",
+    "nvidia-curand",
+    "nvidia-cusolver",
+    "nvidia-cusparse",
+    "nvidia-cusparselt",
+    "nvidia-nccl",
+    "nvidia-nvjitlink",
+    "nvidia-nvtx",
+    "nvidia-variant-provider",
+    # PyTorch
+    "torch",
+    "torchvision"
+]
