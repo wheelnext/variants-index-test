@@ -1,5 +1,9 @@
 [[index]]
 name = "quansight"
+maintainers = [
+    { name = "Michał Górny", email = "mgorny@quansight.com" },
+    { name = "Ralf Gommers", email = "rgommers@quansight.com" },
+]
 registry = "https://pypi.anaconda.org/mgorny/simple/"
 packages = [
     "numpy",
@@ -9,6 +13,10 @@ packages = [
 
 [[index]]
 name = "pytorch"
+maintainers = [
+    { name = "Andrey Talman", email = "atalman@meta.com" },
+    { name = "Eli Uriegas", email = "eliuriegas@meta.com" },
+]
 registry = "https://download.pytorch.org/whl/variant/"
 packages = [
     # NVIDIA Packages
