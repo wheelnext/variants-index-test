@@ -6,7 +6,11 @@ on:
       - master  # Set a branch to deploy
 
 jobs:
-  build:
+
+  build-index:
+    permissions:
+      contents: write # Needed for GH pages updates
+
     runs-on: ubuntu-24.04
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
@@ -29,30 +33,28 @@ jobs:
         run: |
           uv run main.py
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-            path: build/
-        
-  # Deployment job
-  deploy:
-    needs: build
-
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-
-    # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Publish pages
         if: github.ref == 'refs/heads/master'
-        with:
-          token: ${{ github.token }}
+        run: |
+          commit=${GITHUB_SHA::7}
+          version=$(grep '^version' pyproject.toml | cut -d '"' -f2)
+
+          git fetch origin gh-pages
+          git branch gh-pages FETCH_HEAD
+          git checkout gh-pages
+
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+          mkdir "$commit"
+          cp -r build/* "./$commit"
+          git add "$commit"
+          
+          version_dir="v${version}"
+          rm -rf "${version_dir}/"
+          mkdir "$version_dir"
+          cp -r build/* "./$version_dir"
+          git add "$version_dir"
+
+          git commit -m "Publish Wheel Variant Index for $commit"
+          git push --set-upstream origin gh-pages
