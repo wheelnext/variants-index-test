@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MockHouse - A fast development platform for the WheelNext Open-Source Initiative.</title>
+    <link rel="icon" type="image/x-icon" href="static/icons/python_32x32.ico" sizes="32x32">
+    <link rel="icon" type="image/x-icon" href="static/icons/python_48x48.ico" sizes="48x48">
+    <link rel="icon" type="image/x-icon" href="static/icons/python_64x64.ico" sizes="64x64">
+    <link rel="icon" type="image/x-icon" href="static/icons/python_72x72.ico" sizes="72x72">
+    <link rel="icon" type="image/x-icon" href="static/icons/python_96x96.ico" sizes="96x96">
+    <link rel="icon" type="image/x-icon" href="static/icons/python_128x128.ico" sizes="128x128">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        header {
+            background: #007acc;
+            color: #fff;
+            width: 100%;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .content {
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        .highlight {
+            color: #007acc;
+            font-weight: bold;
+        }
+
+        .cta {
+            background: #007acc;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 1rem 2rem;
+            font-size: 1.3rem;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: background 0.3s ease;
+        }
+
+        .cta:hover {
+            background: #005a99;
+        }
+
+        footer {
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: auto;
+            position: relative;
+            bottom: 0;
+        }
+
+        .joke {
+            color: #555;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            font-style: italic;
+        }
+
+        .code-block {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0 1rem;
+            font-family: monospace;
+            overflow-x: auto;
+            margin: 1rem 0;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="/" style="color: white; text-decoration: none;">
+            <h1>MockHouse</h1>
+        </a>
+        <p>A fast development platform for the <a href="https://github.com/wheelnext" target="_blank"
+                style="color: white;">WheelNext
+                Open-Source Initiative</a>.</p>
+    </header>
+
+    <div style="width: 100vw; text-align: left; list-style: none; padding-left: 10rem;">
+
+        <h1>torchvision</h1>
+
+        <ul>
+            
+            <li>
+                
+                <a href="torchvision-0.23.0-variants.json#sha256=f73788697773b8d02c30e21358921bee2ca214ce5a04e3cf947f8399ed7a2a73" data-dist-info-metadata="sha256=f73788697773b8d02c30e21358921bee2ca214ce5a04e3cf947f8399ed7a2a73"
+                    data-core-metadata="sha256=f73788697773b8d02c30e21358921bee2ca214ce5a04e3cf947f8399ed7a2a73">
+                    torchvision-0.23.0-variants.json
+                </a>
+                
+                <br><br>
+            </li>
+            
+
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp310-cp310-macosx_11_0_arm64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp310-cp310-macosx_11_0_arm64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp310-cp310-manylinux_2_28_aarch64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp310-cp310-manylinux_2_28_aarch64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp310-cp310-manylinux_2_28_x86_64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp310-cp310-manylinux_2_28_x86_64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp310-cp310-manylinux_2_28_x86_64-cu126.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp310-cp310-manylinux_2_28_x86_64-cu126.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.0<br>
+                    
+                    nvidia :: sm_arch :: 50_real<br>
+                    
+                    nvidia :: sm_arch :: 60_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp310-cp310-manylinux_2_28_x86_64-cu128.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp310-cp310-manylinux_2_28_x86_64-cu128.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.8<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp310-cp310-manylinux_2_28_x86_64-cu129.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp310-cp310-manylinux_2_28_x86_64-cu129.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.9<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 120_virtual<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp310-cp310-win_amd64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp310-cp310-win_amd64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp310-cp310-win_amd64-cu126.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp310-cp310-win_amd64-cu126.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.0<br>
+                    
+                    nvidia :: sm_arch :: 50_real<br>
+                    
+                    nvidia :: sm_arch :: 60_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp310-cp310-win_amd64-cu128.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp310-cp310-win_amd64-cu128.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.8<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp310-cp310-win_amd64-cu129.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp310-cp310-win_amd64-cu129.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.9<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 120_virtual<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp311-cp311-macosx_11_0_arm64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp311-cp311-macosx_11_0_arm64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp311-cp311-manylinux_2_28_aarch64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp311-cp311-manylinux_2_28_aarch64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp311-cp311-manylinux_2_28_x86_64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp311-cp311-manylinux_2_28_x86_64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp311-cp311-manylinux_2_28_x86_64-cu126.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp311-cp311-manylinux_2_28_x86_64-cu126.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.0<br>
+                    
+                    nvidia :: sm_arch :: 50_real<br>
+                    
+                    nvidia :: sm_arch :: 60_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp311-cp311-manylinux_2_28_x86_64-cu128.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp311-cp311-manylinux_2_28_x86_64-cu128.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.8<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp311-cp311-manylinux_2_28_x86_64-cu129.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp311-cp311-manylinux_2_28_x86_64-cu129.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.9<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 120_virtual<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp311-cp311-win_amd64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp311-cp311-win_amd64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp311-cp311-win_amd64-cu126.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp311-cp311-win_amd64-cu126.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.0<br>
+                    
+                    nvidia :: sm_arch :: 50_real<br>
+                    
+                    nvidia :: sm_arch :: 60_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp311-cp311-win_amd64-cu128.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp311-cp311-win_amd64-cu128.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.8<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp311-cp311-win_amd64-cu129.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp311-cp311-win_amd64-cu129.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.9<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 120_virtual<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp312-cp312-macosx_11_0_arm64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp312-cp312-macosx_11_0_arm64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp312-cp312-manylinux_2_28_aarch64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp312-cp312-manylinux_2_28_aarch64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp312-cp312-manylinux_2_28_x86_64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp312-cp312-manylinux_2_28_x86_64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp312-cp312-manylinux_2_28_x86_64-cu126.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp312-cp312-manylinux_2_28_x86_64-cu126.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.0<br>
+                    
+                    nvidia :: sm_arch :: 50_real<br>
+                    
+                    nvidia :: sm_arch :: 60_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp312-cp312-manylinux_2_28_x86_64-cu128.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp312-cp312-manylinux_2_28_x86_64-cu128.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.8<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp312-cp312-manylinux_2_28_x86_64-cu129.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp312-cp312-manylinux_2_28_x86_64-cu129.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.9<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 120_virtual<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp312-cp312-win_amd64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp312-cp312-win_amd64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp312-cp312-win_amd64-cu126.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp312-cp312-win_amd64-cu126.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.0<br>
+                    
+                    nvidia :: sm_arch :: 50_real<br>
+                    
+                    nvidia :: sm_arch :: 60_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp312-cp312-win_amd64-cu128.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp312-cp312-win_amd64-cu128.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.8<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp312-cp312-win_amd64-cu129.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp312-cp312-win_amd64-cu129.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.9<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 120_virtual<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313-macosx_11_0_arm64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp313-cp313-macosx_11_0_arm64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313-manylinux_2_28_aarch64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp313-cp313-manylinux_2_28_aarch64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313-manylinux_2_28_x86_64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp313-cp313-manylinux_2_28_x86_64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313-manylinux_2_28_x86_64-cu126.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp313-cp313-manylinux_2_28_x86_64-cu126.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.0<br>
+                    
+                    nvidia :: sm_arch :: 50_real<br>
+                    
+                    nvidia :: sm_arch :: 60_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313-manylinux_2_28_x86_64-cu128.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp313-cp313-manylinux_2_28_x86_64-cu128.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.8<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313-manylinux_2_28_x86_64-cu129.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp313-cp313-manylinux_2_28_x86_64-cu129.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.9<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 120_virtual<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313-win_amd64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp313-cp313-win_amd64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313-win_amd64-cu126.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp313-cp313-win_amd64-cu126.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.0<br>
+                    
+                    nvidia :: sm_arch :: 50_real<br>
+                    
+                    nvidia :: sm_arch :: 60_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313-win_amd64-cu128.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp313-cp313-win_amd64-cu128.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.8<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313-win_amd64-cu129.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp313-cp313-win_amd64-cu129.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.9<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 120_virtual<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313t-macosx_11_0_arm64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp313-cp313t-macosx_11_0_arm64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313t-manylinux_2_28_aarch64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp313-cp313t-manylinux_2_28_aarch64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313t-manylinux_2_28_x86_64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp313-cp313t-manylinux_2_28_x86_64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313t-manylinux_2_28_x86_64-cu126.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp313-cp313t-manylinux_2_28_x86_64-cu126.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.0<br>
+                    
+                    nvidia :: sm_arch :: 50_real<br>
+                    
+                    nvidia :: sm_arch :: 60_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313t-manylinux_2_28_x86_64-cu128.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp313-cp313t-manylinux_2_28_x86_64-cu128.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.8<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313t-manylinux_2_28_x86_64-cu129.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp313-cp313t-manylinux_2_28_x86_64-cu129.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.9<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 120_virtual<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313t-win_amd64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp313-cp313t-win_amd64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313t-win_amd64-cu126.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp313-cp313t-win_amd64-cu126.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.0<br>
+                    
+                    nvidia :: sm_arch :: 50_real<br>
+                    
+                    nvidia :: sm_arch :: 60_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313t-win_amd64-cu128.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp313-cp313t-win_amd64-cu128.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.8<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp313-cp313t-win_amd64-cu129.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp313-cp313t-win_amd64-cu129.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.9<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 120_virtual<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp39-cp39-macosx_11_0_arm64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp39-cp39-macosx_11_0_arm64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp39-cp39-manylinux_2_28_aarch64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp39-cp39-manylinux_2_28_aarch64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp39-cp39-manylinux_2_28_x86_64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp39-cp39-manylinux_2_28_x86_64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp39-cp39-manylinux_2_28_x86_64-cu126.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp39-cp39-manylinux_2_28_x86_64-cu126.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.0<br>
+                    
+                    nvidia :: sm_arch :: 50_real<br>
+                    
+                    nvidia :: sm_arch :: 60_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp39-cp39-manylinux_2_28_x86_64-cu128.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp39-cp39-manylinux_2_28_x86_64-cu128.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.8<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp39-cp39-manylinux_2_28_x86_64-cu129.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp39-cp39-manylinux_2_28_x86_64-cu129.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.9<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 120_virtual<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp39-cp39-win_amd64-00000000.whl#sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8" data-dist-info-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8"
+                    data-core-metadata="sha256=816dca8ff598ed36275f043a352f7a2561c93ecaee906e1e2bdd83c522a216c8">
+                    torchvision-0.23.0-cp39-cp39-win_amd64-00000000.whl
+                </a>
+                
+
+                
+                <br><br>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp39-cp39-win_amd64-cu126.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp39-cp39-win_amd64-cu126.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.0<br>
+                    
+                    nvidia :: sm_arch :: 50_real<br>
+                    
+                    nvidia :: sm_arch :: 60_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp39-cp39-win_amd64-cu128.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp39-cp39-win_amd64-cu128.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.8<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="https://download.pytorch.org/whl/variant/torchvision-0.23.0-cp39-cp39-win_amd64-cu129.whl#sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d" data-dist-info-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d"
+                    data-core-metadata="sha256=76c309006ef3a8fcf352de5062b997975f46184e638fd657abdb27a383d5af3d">
+                    torchvision-0.23.0-cp39-cp39-win_amd64-cu129.whl
+                </a>
+                
+
+                
+                <div class="code-block">
+                    
+                    nvidia :: cuda_version_lower_bound :: 12.9<br>
+                    
+                    nvidia :: sm_arch :: 100_real<br>
+                    
+                    nvidia :: sm_arch :: 120_real<br>
+                    
+                    nvidia :: sm_arch :: 120_virtual<br>
+                    
+                    nvidia :: sm_arch :: 70_real<br>
+                    
+                    nvidia :: sm_arch :: 75_real<br>
+                    
+                    nvidia :: sm_arch :: 80_real<br>
+                    
+                    nvidia :: sm_arch :: 86_real<br>
+                    
+                    nvidia :: sm_arch :: 90_real<br>
+                    
+                </div>
+                
+            </li>
+            
+        </ul>
+
+    </div>
+
+    <footer>
+        <div style="color: #3c3a3a; padding-bottom: 1rem;">Build Date: 2025-09-18 18:24</div>
+        <a href="https://wheelnext.dev/" target="_blank" class="highlight">
+            WheelNext | Serving wheels with a wink and a nudge (when not eating tacos).
+        </a>
+    </footer>
+
+</body>
+
+</html>
