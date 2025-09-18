@@ -1,15 +1,19 @@
 from __future__ import annotations
 
 import datetime
+import hashlib
+import json
 import logging
 import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin
+from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
 
 import jinja2
+import jsonschema
 import requests
 from bs4 import BeautifulSoup
 
@@ -41,6 +45,14 @@ VARIANT_WHL_FILE_REGEX = re.compile(
     re.VERBOSE,
 )
 
+def sha256sum(path: Path, chunk_size: int = 8192) -> str:
+    """Compute the SHA-256 checksum of a file."""
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(chunk_size), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
 
 @dataclass(frozen=True)
 class PkgConfig:
@@ -67,6 +79,14 @@ class VariantJson(Artifact):
     @property
     def version(self) -> str:
         return self.re_match(VARIANT_JSON_FILE_REGEX).group(1)
+
+    @classmethod
+    def from_file(cls, fp: Path) -> VariantJson:
+        return VariantJson(
+            name=fp.name,
+            link=fp.name,
+            checksum=f"sha256={sha256sum(fp)}"
+        )
 
 
 @dataclass(frozen=True)
@@ -143,7 +163,32 @@ def download_json(url: str) -> dict[str, Any]:
     response = requests.get(url, timeout=10)
     response.raise_for_status()  # Ensure we notice bad responses
 
-    return response.json()
+    data = response.json()
+
+    # sanitazing
+    if data["$schema"] == "https://variants-schema.wheelnext.dev/":
+        # This schema has been renamed
+        data["$schema"] = "https://variants-schema.wheelnext.dev/v0.0.2.json"
+
+    if "variants-schema.wheelnext.dev" in (schema_url := data["$schema"]):
+        schema = download_json(url=schema_url)
+        jsonschema.validate(instance=data, schema=schema)
+
+    return data
+
+
+def load_variant_json(url: str, pkg_cfg: PkgConfig) -> dict[str, Any]:
+    parsed_url = urlparse(url)
+
+    if not (variant_f := BUILD_DIR / pkg_cfg.name /Path(parsed_url.path).name).exists():
+        data = download_json(url)
+        variant_f.parent.mkdir(exist_ok=True, parents=True)
+        with variant_f.open(mode="w") as f:
+            json.dump(data, f, sort_keys=True, indent=4)
+        return data
+
+    with variant_f.open(mode="r") as f:
+        return json.load(f)
 
 
 def generate_project_index(pkg_config: PkgConfig) -> None:
@@ -171,7 +216,7 @@ def generate_project_index(pkg_config: PkgConfig) -> None:
                 f"Variant JSON file for version `{vjson_f.version}` and package "
                 f"{pkg_config.name} already exists."
             )
-        data = download_json(vjson_f.link)
+        data = load_variant_json(vjson_f.link, pkg_cfg=pkg_config)
         if (variant_info := data.get("variants", None)) is None:
             raise ValueError("Invalid Variant JSON file format ...")
 
@@ -209,7 +254,10 @@ def generate_project_index(pkg_config: PkgConfig) -> None:
     # Render template
     output = template.render(
         project_name=pkg_config.name,
-        variants_json_files=variants_json_files,
+        variants_json_files=[
+            VariantJson.from_file(fp)
+            for fp in (BUILD_DIR / pkg_config.name).glob("*.json")
+        ],
         wheel_variant_files=wheel_variant_files,
         build_date=BUILD_DATE,
     )
