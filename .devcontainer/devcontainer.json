@@ -1,0 +1,36 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/docker-existing-dockerfile
+{
+  "name": "WheelNext - Dev Container",
+  "image": "python:latest",
+  "workspaceFolder": "/workspace/",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/,type=bind",
+  // Set *default* container specific settings.json values on container create.
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.formatOnSave": true,
+        "makefile.configureOnOpen": false,
+        "remote.autoForwardPorts": false,
+      },
+      "extensions": []
+    }
+  },
+  "postStartCommand": "bash -c 'python3 -m http.server 5000'",
+  "forwardPorts": [5000],
+  "portsAttributes": {
+    "5000": {
+      "label": "Variants Package Index Server",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "username": "wheelnext",
+      "installZsh": true,
+      "installOhMyZsh": true,
+      "configureZshAsDefaultShell": false,
+      "upgradePackages": false
+    }
+  }
+}
