@@ -16,6 +16,16 @@ packages = [
 ]
 
 [[index]]
+name = "nvidia"
+maintainers = [
+    { name = "Jonathan Dekhtiar", email = "jdekhtiar@nvidia.com" },
+]
+registry = "https://wheelnext.github.io/nvidia-variant-provider/"
+packages = [
+    "nvidia-variant-provider",
+]
+
+[[index]]
 name = "pytorch"
 maintainers = [
     { name = "Andrey Talman", email = "atalman@meta.com" },
@@ -38,7 +48,6 @@ packages = [
     "nvidia-nccl",
     "nvidia-nvjitlink",
     "nvidia-nvtx",
-    "nvidia-variant-provider",
     # PyTorch
     "torch",
     "torchvision"
