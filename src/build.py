@@ -45,6 +45,7 @@ VARIANT_WHL_FILE_REGEX = re.compile(
     re.VERBOSE,
 )
 
+
 def sha256sum(path: Path, chunk_size: int = 8192) -> str:
     """Compute the SHA-256 checksum of a file."""
     h = hashlib.sha256()
@@ -83,9 +84,7 @@ class VariantJson(Artifact):
     @classmethod
     def from_file(cls, fp: Path) -> VariantJson:
         return VariantJson(
-            name=fp.name,
-            link=fp.name,
-            checksum=f"sha256={sha256sum(fp)}"
+            name=fp.name, link=fp.name, checksum=f"sha256={sha256sum(fp)}"
         )
 
 
@@ -100,6 +99,12 @@ class VariantWheel(Artifact):
     @property
     def variant_alias(self) -> str:
         return self.re_match(VARIANT_WHL_FILE_REGEX).group("variant_label")
+
+
+def safe_urljoin(base: str, path: str) -> str:
+    if not base.endswith("/"):
+        base += "/"
+    return urljoin(base, path)
 
 
 def generate_main_index(packages: list[str]) -> None:
@@ -132,24 +137,32 @@ def fetch_links(url: str) -> list[VariantWheel | VariantJson]:
     # Find all <a> tags with href attribute ending with .json or .whl
     artifacts: list[VariantWheel | VariantJson] = []
     for a_tag in soup.find_all("a", href=True):
-        href = a_tag["href"]
-        if href.endswith(".json") or href.endswith(".whl"):
-            absolute_link = urljoin(url, href)
-            checksum = (
-                a_tag.get("data-dist-info-metadata")
-                or a_tag.get("data-core-metadata")
-                or ""
-            )
-            filename: str = a_tag.text
+        href: str = a_tag["href"]  # pyright: ignore[reportUnknownVariableType, reportAssignmentType, reportArgumentType, reportIndexIssue]
+
+        if (link := href.split("#", maxsplit=1)[0]).endswith((".json", ".whl")):  # pyright: ignore[reportUnknownVariableType, reportUnknownMemberType, reportAttributeAccessIssue]
+            checksum = ""
+
+            # Case 1: checksum inside the href fragment
+            parsed = urlparse(href)  # pyright: ignore[reportArgumentType, reportCallIssue]
+            if parsed.fragment.startswith("sha256="):
+                checksum: str = parsed.fragment.split("=", 1)[1]
+
+            # Case 2: checksum inside integrity attribute
+            elif integrity := a_tag.get("integrity"):  # pyright: ignore[reportAttributeAccessIssue, reportUnknownMemberType, reportUnknownVariableType]
+                if integrity.startswith("sha256-"):  # pyright: ignore[reportUnknownMemberType, reportAttributeAccessIssue]
+                    checksum: str = integrity.split("sha256-", 1)[1]  # pyright: ignore[reportUnknownVariableType, reportUnknownMemberType, reportAttributeAccessIssue]
+
+            absolute_link = safe_urljoin(url, link)
+            filename: str = a_tag.text.strip()
 
             if filename.endswith(".json"):
                 artifacts.append(
-                    VariantJson(name=filename, link=absolute_link, checksum=checksum)
+                    VariantJson(name=filename, link=absolute_link, checksum=checksum)  # pyright: ignore[reportUnknownArgumentType]
                 )
 
             elif filename.endswith(".whl"):
                 artifacts.append(
-                    VariantWheel(name=filename, link=absolute_link, checksum=checksum)
+                    VariantWheel(name=filename, link=absolute_link, checksum=checksum)  # pyright: ignore[reportUnknownArgumentType]
                 )
 
             else:
@@ -180,7 +193,9 @@ def download_json(url: str) -> dict[str, Any]:
 def load_variant_json(url: str, pkg_cfg: PkgConfig) -> dict[str, Any]:
     parsed_url = urlparse(url)
 
-    if not (variant_f := BUILD_DIR / pkg_cfg.name /Path(parsed_url.path).name).exists():
+    if not (
+        variant_f := BUILD_DIR / pkg_cfg.name / Path(parsed_url.path).name
+    ).exists():
         data = download_json(url)
         variant_f.parent.mkdir(exist_ok=True, parents=True)
         with variant_f.open(mode="w") as f:
@@ -201,7 +216,7 @@ def generate_project_index(pkg_config: PkgConfig) -> None:
     )
     template = jinja_env.get_template("project_page.j2")
 
-    artifacts = fetch_links(urljoin(pkg_config.registry, pkg_config.name))
+    artifacts = fetch_links(safe_urljoin(pkg_config.registry, pkg_config.name))
 
     variants_json_files = sorted(
         [artifact for artifact in artifacts if isinstance(artifact, VariantJson)],

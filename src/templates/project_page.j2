@@ -133,10 +133,8 @@
             {% for artifact in variants_json_files %}
             <li>
                 {% if artifact.checksum %}
-                <a href="{{ artifact.link }}#{{ artifact.checksum }}" data-dist-info-metadata="{{ artifact.checksum }}"
-                    data-core-metadata="{{ artifact.checksum }}">
-                    {{ artifact.name }}
-                </a>
+                <a href="{{ artifact.link }}#sha256={{ artifact.checksum }}"
+                    integrity="sha256-{{ artifact.checksum }}">{{ artifact.name }}</a>
                 {% else %}
                 <a href="{{ artifact.link }}">{{ artifact.name }}</a>
                 {% endif %}
@@ -147,10 +145,8 @@
             {% for artifact in wheel_variant_files %}
             <li>
                 {% if artifact.checksum %}
-                <a href="{{ artifact.link }}#{{ artifact.checksum }}" data-dist-info-metadata="{{ artifact.checksum }}"
-                    data-core-metadata="{{ artifact.checksum }}">
-                    {{ artifact.name }}
-                </a>
+                <a href="{{ artifact.link }}#sha256={{ artifact.checksum }}"
+                    integrity="sha256-{{ artifact.checksum }}">{{ artifact.name }}</a>
                 {% else %}
                 <a href="{{ artifact.link }}">{{ artifact.name }}</a>
                 {% endif %}
