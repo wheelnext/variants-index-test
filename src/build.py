@@ -269,10 +269,13 @@ def generate_project_index(pkg_config: PkgConfig) -> None:
     # Render template
     output = template.render(
         project_name=pkg_config.name,
-        variants_json_files=[
-            VariantJson.from_file(fp)
-            for fp in (BUILD_DIR / pkg_config.name).glob("*.json")
-        ],
+        variants_json_files=sorted(
+            [
+                VariantJson.from_file(fp)
+                for fp in (BUILD_DIR / pkg_config.name).glob("*.json")
+            ],
+            key=lambda vf: vf.name,
+        ),
         wheel_variant_files=wheel_variant_files,
         build_date=BUILD_DATE,
     )
