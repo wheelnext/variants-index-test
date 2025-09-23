@@ -5,6 +5,8 @@ on:
     branches:
       - master  # Set a branch to deploy
 
+  workflow_dispatch:
+
 jobs:
 
   build-index:
@@ -45,7 +47,8 @@ jobs:
 
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
+          
+          rm -rf "${commit}/"
           mkdir "$commit"
           cp -r build/* "./$commit"
           git add "$commit"
@@ -56,5 +59,9 @@ jobs:
           cp -r build/* "./$version_dir"
           git add "$version_dir"
 
-          git commit -m "Publish Wheel Variant Index for $commit"
-          git push --set-upstream origin gh-pages
+          if git diff --cached --quiet; then
+            echo "No changes to publish, skipping commit."
+          else
+            git commit -m "Publish Wheel Variant Index for $commit"
+            git push --set-upstream origin gh-pages
+          fi
