@@ -17,6 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-powershell.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-toml.min.js"></script>
 
     <style>
         body {
@@ -185,6 +186,11 @@
         .copy-btn:hover {
             background: rgba(0, 90, 153, 0.9);
         }
+
+        .code-inlined {
+            font-size: 1.1em;
+            background: #dbd6d6;
+        }
     </style>
 </head>
 
@@ -221,7 +227,7 @@
                 <div class="code-block">
                     <pre><code id="linux-code" class="language-bash">curl -LsSf https://astral.sh/uv/install.sh | INSTALLER_DOWNLOAD_URL=https://wheelnext.astral.sh/v0.0.2 sh
 uv venv
-uv pip install torch</code></pre>
+uv pip install --index https://wheelnext.github.io/variants-index-test/v0.0.2/ &lt;package_name&gt;</code></pre>
                     <button class="copy-btn" onclick="copyCode('linux-code')">Copy</button>
                 </div>
             </div>
@@ -235,6 +241,19 @@ uv pip install torch</code></pre>
                 </div>
             </div>
         </div>
+
+        <!-- Install instructions with tabs -->
+        <div style="margin-top: 2em;text-align: left;">
+            Instead of using <code
+                class="code-inlined">--index https://wheelnext.github.io/variants-index-test/v0.0.2/</code>,
+            it is possible to add the following to the <code class="code-inlined">pyproject.toml</code> file
+            <div class="code-block">
+                <pre><code id="pyproject-code" class="language-toml">[[tool.uv.index]]
+url = "https://wheelnext.github.io/variants-index-test/v0.0.2/"</code></pre>
+                <button class="copy-btn" onclick="copyCode('pyproject-code')">Copy</button>
+            </div>
+        </div>
+
     </div>
 
     <div style="width: 100%; text-align: left; list-style: none; max-width: 1200px;">
