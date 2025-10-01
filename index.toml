@@ -81,3 +81,24 @@ registry = "https://wheels-variant.xgboost-ci.com/"
 packages = [
     "xgboost"
 ]
+
+[[index]]
+name = "intel-provider"
+maintainers = [
+    {name = "Chuanqi Wang", email = "chuanqi.wang@intel.com"},
+    {name = "Dmitry Rogozhkin", email = "dmitry.v.rogozhkin@intel.com"},
+]
+registry = "https://wheelnext.github.io/intel-variant-provider/"
+packages = [
+    "intel-variant-provider",
+]
+
+[[index]]
+name = "amd-provider"
+maintainers = [
+    {name = "Jithun Nair", email = "jithun.nair@amd.com"},
+]
+registry = "https://wheelnext.github.io/amd-variant-provider/"
+packages = [
+    "amd-variant-provider",
+]
