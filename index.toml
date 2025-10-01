@@ -71,3 +71,13 @@ registry = "https://variants-index.wheelnext.dev/"
 packages = [
     "cupy"
 ]
+
+[[index]]
+name = "xgboost"
+maintainers = [
+    { name = "Hyunsu Cho", email = "phcho@nvidia.com" },
+]
+registry = "https://wheels-variant.xgboost-ci.com/"
+packages = [
+    "xgboost"
+]
