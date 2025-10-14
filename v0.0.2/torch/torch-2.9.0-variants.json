@@ -4,14 +4,8 @@
         "namespace": [
             "nvidia",
             "intel",
-            "amd",
-            "priority"
-        ],
-        "property": {
-            "priority": {
-                "order": ["1", "2", "3"]
-            }
-        }
+            "amd"
+        ]
     },
     "providers": {
         "amd": {
@@ -34,10 +28,6 @@
             "requires": [
                 "nvidia-variant-provider>=0.0.2,<1.0.0"
             ]
-        },
-        "priority": {
-            "plugin-use": "none",
-            "requires": []
         }
     },
     "variants": {
@@ -55,11 +45,6 @@
                     "86_real",
                     "90_real"
                 ]
-            },
-            "priority": {
-                "order": [
-                    "3"
-                ]
             }
         },
         "cuda12.8": {
@@ -76,11 +61,6 @@
                     "100_real",
                     "120_real"
                 ]
-            },
-            "priority": {
-                "order": [
-                    "2"
-                ]
             }
         },
         "cuda13.0": {
@@ -96,11 +76,6 @@
                     "100_real",
                     "120_real",
                     "120_virtual"
-                ]
-            },
-            "priority": {
-                "order": [
-                    "1"
                 ]
             }
         },
