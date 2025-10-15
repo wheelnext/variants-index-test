@@ -7,7 +7,7 @@ maintainers = [
 registry = "https://pypi.anaconda.org/mgorny/simple/"
 packages = [
     "blas-lapack-variant-provider",
-    # "numpy",
+    "numpy",
     "openmp-variant-provider",
     "provider-variant-aarch64",
     "provider-variant-x86-64",
