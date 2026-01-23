@@ -32,6 +32,7 @@ maintainers = [
 ]
 registry = "https://variants-index.wheelnext.dev/"
 packages = [
+    "cuda-bindings",
     "nvidia-cublas",
     "nvidia-cuda-cupti",
     "nvidia-cuda-nvrtc",
