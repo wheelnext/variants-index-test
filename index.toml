@@ -32,7 +32,6 @@ maintainers = [
 ]
 registry = "https://variants-index.wheelnext.dev/"
 packages = [
-    "cuda-bindings",
     "nvidia-cublas",
     "nvidia-cuda-cupti",
     "nvidia-cuda-nvrtc",
@@ -70,7 +69,12 @@ maintainers = [
 ]
 registry = "https://download.pytorch.org/whl/test/"
 packages = [
+    # todo: remove cuda bindings from here and source from variants-index.wheelnext.dev
+    "cuda-bindings",
     "triton",
+    "triton-rocm",
+    "triton-xpu",
+    # keep older packages for compatibility with older pytorch
     "pytorch-triton-rocm",
     "pytorch-triton-xpu"
 ]
