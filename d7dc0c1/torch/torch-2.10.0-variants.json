@@ -6,16 +6,7 @@
             "intel",
             "amd",
             "priority"
-        ],
-        "property": {
-            "priority": {
-                "order": [
-                    "1",
-                    "2",
-                    "3"
-                ]
-            }
-        }
+        ]
     },
     "providers": {
         "amd": {
@@ -42,6 +33,15 @@
         "priority": {
             "install-time": false,
             "requires": []
+        }
+    },
+    "static-properties": {
+        "priority": {
+            "order": [
+                "1",
+                "2",
+                "3"
+            ]
         }
     },
     "variants": {
