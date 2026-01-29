@@ -227,7 +227,7 @@
                 <div class="code-block">
                     <pre><code id="linux-code" class="language-bash">curl -LsSf https://astral.sh/uv/install.sh | INSTALLER_DOWNLOAD_URL=https://wheelnext.astral.sh/v0.0.3 sh
 uv venv
-uv pip install --index https://wheelnext.github.io/variants-index-test/v0.0.2/ &lt;package_name&gt;</code></pre>
+uv pip install --index https://wheelnext.github.io/variants-index-test/v0.0.3/ &lt;package_name&gt;</code></pre>
                     <button class="copy-btn" onclick="copyCode('linux-code')">Copy</button>
                 </div>
             </div>
@@ -245,11 +245,11 @@ uv pip install torch</code></pre>
         <!-- Install instructions with tabs -->
         <div style="margin-top: 2em;text-align: left;">
             Instead of using <code
-                class="code-inlined">--index https://wheelnext.github.io/variants-index-test/v0.0.2/</code>,
+                class="code-inlined">--index https://wheelnext.github.io/variants-index-test/v0.0.3/</code>,
             it is possible to add the following to the <code class="code-inlined">pyproject.toml</code> file
             <div class="code-block">
                 <pre><code id="pyproject-code" class="language-toml">[[tool.uv.index]]
-url = "https://wheelnext.github.io/variants-index-test/v0.0.2/"</code></pre>
+url = "https://wheelnext.github.io/variants-index-test/v0.0.3/"</code></pre>
                 <button class="copy-btn" onclick="copyCode('pyproject-code')">Copy</button>
             </div>
         </div>
