@@ -187,6 +187,10 @@ def pkg_name_to_version(pkg_name: str) -> Version:
 def collect_all_links(pkgconfig: PkgConfig) -> list[VariantWheel | VariantJson]:
     artifacts = fetch_links(safe_urljoin(pkgconfig.registry, pkgconfig.name + "/"))
 
+    artifacts = list(
+        filter(lambda artifact: "00000000" not in artifact.name, artifacts)
+    )
+
     variant_versions: set[Version] = {
         pkg_name_to_version(artifact.name)
         for artifact in artifacts
