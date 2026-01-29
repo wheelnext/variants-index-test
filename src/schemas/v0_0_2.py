@@ -91,7 +91,10 @@ class WheelVariantJSON_V0_0_2(BaseModel):  # noqa: N801
 
         # Copy variants directly
         variants_v3 = self.variants
+
+        # Ensure there's no remaining of old `null` variant format
         variants_v3["null"] = {}
+        _ = variants_v3.pop("00000000", None)
 
         # Build static-properties from default_priorities.property
         static_props = {}
