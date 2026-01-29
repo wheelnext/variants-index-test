@@ -324,7 +324,7 @@ def generate_project_index(pkg_config: PkgConfig) -> None:
 
     wheel_files = sorted(
         [
-            augment_wheel_variant(artifact)
+            augment_wheel_variant(artifact) if artifact.variant_alias else artifact
             for artifact in artifacts
             if (
                 isinstance(artifact, VariantWheel)
