@@ -225,19 +225,19 @@
 
             <div id="linux" class="tab-content active">
                 <div class="code-block">
-                    <pre><code id="linux-code" class="language-bash">curl -LsSf https://wheelnext.astral.sh/v0.0.3/uv-installer.sh | INSTALLER_DOWNLOAD_URL=https://wheelnext.astral.sh/v0.0.3 sh
+                    <pre><code id="linux-code" class="language-bash">curl -LsSf https://astral.sh/uv/install.sh | INSTALLER_DOWNLOAD_URL=https://wheelnext.astral.sh/v0.2.0 sh
 uv venv
-uv pip install --index https://wheelnext.github.io/variants-index-test/v0.0.3/ &lt;package_name&gt;</code></pre>
-                    <button class="copy-btn" onclick="copyCode('linux-code')">Copy</button>
+uv pip install --index https://wheelnext.github.io/variants-index-test/v0.2.0/ &lt;package_name&gt;</code></pre>
+                    <button class="copy-btn" onclick="copyCode('linux-code', this)">Copy</button>
                 </div>
             </div>
 
             <div id="windows" class="tab-content">
                 <div class="code-block">
-                    <pre><code id="windows-code" class="language-powershell">powershell -c { $env:INSTALLER_DOWNLOAD_URL = 'https://wheelnext.astral.sh/v0.0.3'; irm https://wheelnext.astral.sh/v0.0.3/uv-installer.ps1 | iex }
+                    <pre><code id="windows-code" class="language-powershell">powershell -c { $env:INSTALLER_DOWNLOAD_URL = 'https://wheelnext.astral.sh/v0.2.0'; irm https://astral.sh/uv/install.ps1 | iex }
 uv venv
 uv pip install torch</code></pre>
-                    <button class="copy-btn" onclick="copyCode('windows-code')">Copy</button>
+                    <button class="copy-btn" onclick="copyCode('windows-code', this)">Copy</button>
                 </div>
             </div>
         </div>
@@ -245,12 +245,12 @@ uv pip install torch</code></pre>
         <!-- Install instructions with tabs -->
         <div style="margin-top: 2em;text-align: left;">
             Instead of using <code
-                class="code-inlined">--index https://wheelnext.github.io/variants-index-test/v0.0.3/</code>,
+                class="code-inlined">--index https://wheelnext.github.io/variants-index-test/v0.2.0/</code>,
             it is possible to add the following to the <code class="code-inlined">pyproject.toml</code> file
             <div class="code-block">
                 <pre><code id="pyproject-code" class="language-toml">[[tool.uv.index]]
-url = "https://wheelnext.github.io/variants-index-test/v0.0.3/"</code></pre>
-                <button class="copy-btn" onclick="copyCode('pyproject-code')">Copy</button>
+url = "https://wheelnext.github.io/variants-index-test/v0.2.0/"</code></pre>
+                <button class="copy-btn" onclick="copyCode('pyproject-code', this)">Copy</button>
             </div>
         </div>
 
@@ -283,6 +283,26 @@ url = "https://wheelnext.github.io/variants-index-test/v0.0.3/"</code></pre>
             WheelNext | Serving wheels with a wink and a nudge (when not eating tacos).
         </a>
     </footer>
+
+    <script>
+        function openTab(evt, tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-btn');
+            contents.forEach(content => content.classList.remove('active'));
+            buttons.forEach(button => button.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        function copyCode(codeId, button) {
+            const code = document.getElementById(codeId).innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const original = button.innerText;
+                button.innerText = "Copied!";
+                setTimeout(() => button.innerText = original, 2000);
+            });
+        }
+    </script>
 
 </body>
 
