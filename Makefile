@@ -1,4 +1,6 @@
-.PHONY: clean build install install-dev venv
+.PHONY: clean build serve test install install-dev venv
+
+PORT ?= 8000
 
 # ============================================================================ #
 # CLEAN COMMANDS
@@ -34,5 +36,12 @@ install-dev: venv
 # BUILD COMMANDS
 # ============================================================================ #
 
-build: clean
+# build: clean
+build:
 	uv run main.py
+
+test: ## run the offline regression suite
+	uv run --frozen python -m unittest discover -v
+
+serve: ## serve the generated index locally
+	uv run python -m http.server $(PORT) --bind 127.0.0.1 --directory build

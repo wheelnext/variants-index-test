@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import contextlib
-import datetime
+import datetime as dt
 import hashlib
 import json
 import logging
@@ -9,22 +9,22 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+from urllib.parse import unquote
 from urllib.parse import urljoin
 from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
 
 import jinja2
-import jsonschema
+import jsonschema_rs
 import requests
 from bs4 import BeautifulSoup
 from packaging.version import Version
 
-from src.schemas.v0_0_2 import WheelVariantJSON_V0_0_2
-from src.schemas.v0_0_3 import WheelVariantJSON_V0_0_3
-
 BUILD_DIR = Path("build")
-BUILD_DATE = datetime.datetime.now(tz=ZoneInfo("America/New_York")).strftime(
-    "%Y-%m-%d %H:%M"
+BUILD_DATE = dt.datetime.now(tz=ZoneInfo("America/New_York")).strftime("%Y-%m-%d %H:%M")
+VARIANT_SCHEMA_PATH = Path(__file__).parent / "schema.json"
+VARIANT_VALIDATOR = jsonschema_rs.Draft202012Validator(
+    json.loads(VARIANT_SCHEMA_PATH.read_text(encoding="utf-8"))
 )
 
 logger = logging.getLogger(__name__)
@@ -51,10 +51,6 @@ VARIANT_WHL_FILE_REGEX = re.compile(
 )
 
 
-class VariantVersionNotSupportedError(Exception):
-    """Raised when a variant version is not supported."""
-
-
 def sha256sum(path: Path, chunk_size: int = 8192) -> str:
     """Compute the SHA-256 checksum of a file."""
     h = hashlib.sha256()
@@ -68,6 +64,7 @@ def sha256sum(path: Path, chunk_size: int = 8192) -> str:
 class PkgConfig:
     name: str
     registry: str
+    is_provider: bool = False
 
 
 @dataclass(frozen=True)
@@ -104,7 +101,7 @@ class VariantWheel(Artifact):
         return self.re_match(VARIANT_WHL_FILE_REGEX).group("ver")
 
     @property
-    def variant_alias(self) -> str:
+    def variant_alias(self) -> str | None:
         return self.re_match(VARIANT_WHL_FILE_REGEX).group("variant_label")
 
 
@@ -123,7 +120,9 @@ def generate_main_index(packages: list[str]) -> None:
     )
     template = jinja_env.get_template("main_page.j2")
 
-    filtered_packages = [pkg for pkg in packages if (BUILD_DIR / pkg).is_dir()]
+    filtered_packages = [
+        pkg for pkg in packages if (BUILD_DIR / pkg / "index.html").is_file()
+    ]
 
     # Render template
     output = template.render(
@@ -143,16 +142,17 @@ def fetch_links(url: str) -> list[VariantWheel | VariantJson]:
     # Parse the HTML content
     soup = BeautifulSoup(response.text, "html.parser")
 
-    # Find all <a> tags with href attribute ending with .json or .whl
+    # Use URL filenames because directory listings may abbreviate link text.
     artifacts: list[VariantWheel | VariantJson] = []
     for a_tag in soup.find_all("a", href=True):
         href: str = a_tag["href"]  # pyright: ignore[reportUnknownVariableType, reportAssignmentType, reportArgumentType, reportIndexIssue]
+        parsed = urlparse(href)
+        filename = unquote(parsed.path.rsplit("/", maxsplit=1)[-1])
 
-        if (link := href.split("#", maxsplit=1)[0]).endswith((".json", ".whl")):  # pyright: ignore[reportUnknownVariableType, reportUnknownMemberType, reportAttributeAccessIssue]
+        if filename.endswith((".json", ".whl")):
             checksum = ""
 
             # Case 1: checksum inside the href fragment
-            parsed = urlparse(href)  # pyright: ignore[reportArgumentType, reportCallIssue]
             if parsed.fragment.startswith("sha256="):
                 checksum: str = parsed.fragment.split("=", 1)[1]
 
@@ -161,21 +161,17 @@ def fetch_links(url: str) -> list[VariantWheel | VariantJson]:
                 if integrity.startswith("sha256-"):  # pyright: ignore[reportUnknownMemberType, reportAttributeAccessIssue]
                     checksum: str = integrity.split("sha256-", 1)[1]  # pyright: ignore[reportUnknownVariableType, reportUnknownMemberType, reportAttributeAccessIssue]
 
-            absolute_link = safe_urljoin(url, link)
-            filename: str = a_tag.text.strip()
+            absolute_link = safe_urljoin(url, href.split("#", maxsplit=1)[0])
 
             if filename.endswith(".json"):
                 artifacts.append(
                     VariantJson(name=filename, link=absolute_link, checksum=checksum)  # pyright: ignore[reportUnknownArgumentType]
                 )
 
-            elif filename.endswith(".whl"):
+            else:
                 artifacts.append(
                     VariantWheel(name=filename, link=absolute_link, checksum=checksum)  # pyright: ignore[reportUnknownArgumentType]
                 )
-
-            else:
-                raise ValueError(f"Unknown file extension: `{filename}` ...")
 
     return artifacts
 
@@ -184,14 +180,36 @@ def pkg_name_to_version(pkg_name: str) -> Version:
     return Version(pkg_name.split("-", maxsplit=2)[1])
 
 
+def filter_provider_wheels(
+    artifacts: list[VariantWheel | VariantJson],
+) -> list[VariantWheel]:
+    wheels: list[VariantWheel] = []
+    for artifact in artifacts:
+        if not isinstance(artifact, VariantWheel):
+            continue
+        try:
+            variant_alias = artifact.variant_alias
+        except ValueError:
+            logger.warning(
+                "Ignoring `%s`: invalid provider wheel filename.", artifact.name
+            )
+            continue
+        if variant_alias:
+            logger.warning(
+                "Ignoring `%s`: provider wheels must not have a variant label.",
+                artifact.name,
+            )
+            continue
+        wheels.append(artifact)
+    return wheels
+
+
 def collect_all_links(pkgconfig: PkgConfig) -> list[VariantWheel | VariantJson]:
     artifacts = fetch_links(safe_urljoin(pkgconfig.registry, pkgconfig.name + "/"))
+    if pkgconfig.is_provider:
+        artifacts = list(filter_provider_wheels(artifacts))
 
-    artifacts = list(
-        filter(lambda artifact: "00000000" not in artifact.name, artifacts)
-    )
-
-    variant_versions: set[Version] = {
+    registry_versions: set[Version] = {
         pkg_name_to_version(artifact.name)
         for artifact in artifacts
         if isinstance(artifact, VariantWheel)
@@ -199,15 +217,18 @@ def collect_all_links(pkgconfig: PkgConfig) -> list[VariantWheel | VariantJson]:
 
     # Also add the packages published on PyPI
     with contextlib.suppress(requests.exceptions.HTTPError):
-        for artifact in fetch_links(
+        pypi_artifacts = fetch_links(
             safe_urljoin("https://pypi.org/simple", pkgconfig.name + "/")
-        ):
+        )
+        if pkgconfig.is_provider:
+            pypi_artifacts = list(filter_provider_wheels(pypi_artifacts))
+        for artifact in pypi_artifacts:
             if isinstance(artifact, VariantJson):
                 raise TypeError(
                     f"Unexpected Object found on pypi.org `{artifact.name}`"
                 )
 
-            if pkg_name_to_version(artifact.name) in variant_versions:
+            if pkg_name_to_version(artifact.name) in registry_versions:
                 continue
 
             artifacts.append(artifact)
@@ -222,55 +243,38 @@ def download_json(url: str) -> dict[str, Any]:
 
     data = response.json()
 
-    if "variants-schema.wheelnext.dev" in data["$schema"]:
-        # This schema has been renamed
-        if data["$schema"] == "https://variants-schema.wheelnext.dev/":
-            data["$schema"] = "https://variants-schema.wheelnext.dev/v0.0.2.json"
-
-        try:
-            match urlparse(data["$schema"]).path.rsplit("/", maxsplit=1)[-1]:
-                case "v0.0.2.json":
-                    model = WheelVariantJSON_V0_0_2.model_validate(data)
-                    model_v3 = model.to_v0_0_3()
-                    data = model_v3.model_dump(exclude_none=True, by_alias=True)
-
-                case "v0.0.3.json":
-                    _ = WheelVariantJSON_V0_0_3.model_validate(data)  # validation
-
-                case _:
-                    # already correct
-                    raise VariantVersionNotSupportedError(  # noqa: TRY301
-                        f"Variant schema version not supported: `{data['$schema']}`"
-                    )
-        except Exception:
-            print(f"Validation failed for: {url}")  # noqa: T201
-            raise
-
-        schema = download_json(url=data["$schema"])
-        jsonschema.validate(instance=data, schema=schema)
-
+    VARIANT_VALIDATOR.validate(data)
     return data
 
 
 def load_variant_json(url: str, pkg_cfg: PkgConfig) -> dict[str, Any]:
     parsed_url = urlparse(url)
 
-    if not (
-        variant_f := BUILD_DIR / pkg_cfg.name / Path(parsed_url.path).name
-    ).exists():
+    variant_f = BUILD_DIR / pkg_cfg.name / unquote(Path(parsed_url.path).name)
+    if not variant_f.exists():
         data = download_json(url)
         variant_f.parent.mkdir(exist_ok=True, parents=True)
         with variant_f.open(mode="w") as f:
             json.dump(data, f, sort_keys=True, indent=4)
         return data
 
-    with variant_f.open(mode="r") as f:
-        return json.load(f)
+    try:
+        with variant_f.open(mode="r") as f:
+            data = json.load(f)
+        VARIANT_VALIDATOR.validate(data)
+    except (jsonschema_rs.ValidationError, json.JSONDecodeError):
+        variant_f.unlink()
+        raise
+
+    return data
 
 
-def generate_project_index(pkg_config: PkgConfig) -> None:
-    print()  # noqa: T201
+def generate_project_index(pkg_config: PkgConfig) -> bool:
+    """Build a package page, returning False when no eligible wheels remain."""
     logger.info("Processing `%s` ...", pkg_config.name)
+    project_dir = BUILD_DIR / pkg_config.name
+    # A previously generated page must not keep an ignored package visible.
+    (project_dir / "index.html").unlink(missing_ok=True)
     # Load template
     current_dir = Path(__file__).parent
     jinja_env = jinja2.Environment(
@@ -287,6 +291,8 @@ def generate_project_index(pkg_config: PkgConfig) -> None:
     )
 
     variant_configs: dict[str, dict[str, list[str]]] = {}
+    accepted_json_files: list[VariantJson] = []
+    rejected_versions: set[str] = set()
 
     for vjson_f in variants_json_files:
         if vjson_f.version in variant_configs:
@@ -297,12 +303,18 @@ def generate_project_index(pkg_config: PkgConfig) -> None:
 
         try:
             data = load_variant_json(vjson_f.link, pkg_cfg=pkg_config)
-        except VariantVersionNotSupportedError:
-            logger.warning("Skipping `%s` ... Not compatible.", vjson_f.name)
+        except (
+            jsonschema_rs.ValidationError,
+            json.JSONDecodeError,
+            requests.exceptions.JSONDecodeError,
+        ) as exc:
+            logger.warning(
+                "Ignoring `%s`: incompatible with v0.2.0 (%s).",
+                vjson_f.name,
+                str(exc).splitlines()[0],
+            )
+            rejected_versions.add(vjson_f.version)
             continue
-
-        if (variant_info := data.get("variants", None)) is None:
-            raise ValueError("Invalid Variant JSON file format ...")
 
         variant_configs[vjson_f.version] = {
             variant_alias: [
@@ -311,8 +323,9 @@ def generate_project_index(pkg_config: PkgConfig) -> None:
                 for vfeat_name, vfeat_values in vfeat_data.items()
                 for vfeat_val in vfeat_values
             ]
-            for variant_alias, variant_data in variant_info.items()
+            for variant_alias, variant_data in data["variants"].items()
         }
+        accepted_json_files.append(VariantJson.from_file(project_dir / vjson_f.name))
 
     def augment_wheel_variant(artifact: VariantWheel) -> VariantWheel:
         return VariantWheel(
@@ -326,31 +339,50 @@ def generate_project_index(pkg_config: PkgConfig) -> None:
             ),
         )
 
-    wheel_files = sorted(
-        [
-            augment_wheel_variant(artifact) if artifact.variant_alias else artifact
-            for artifact in artifacts
-            if (
-                isinstance(artifact, VariantWheel)
-                and (not artifact.variant_alias or artifact.version in variant_configs)
-            )
-        ],
+    wheel_files: list[VariantWheel] = []
+    for artifact in artifacts:
+        if not isinstance(artifact, VariantWheel):
+            continue
+        if artifact.version in rejected_versions:
+            continue
+        if artifact.variant_alias:
+            if artifact.version not in variant_configs:
+                continue
+            if artifact.variant_alias not in variant_configs[artifact.version]:
+                logger.warning(
+                    "Ignoring `%s`: variant label is missing from metadata.",
+                    artifact.name,
+                )
+                continue
+            wheel_files.append(augment_wheel_variant(artifact))
+        else:
+            wheel_files.append(artifact)
+
+    wheel_files.sort(
         key=lambda x: (Version(x.name.split("-", maxsplit=2)[1]), x.name),
         reverse=True,
     )
 
-    if not wheel_files:
-        logger.warning("No wheel files found for `%s`. Skipping...", pkg_config.name)
-        return
+    if pkg_config.is_provider and not wheel_files:
+        logger.warning(
+            "Ignoring `%s`: no ordinary provider wheels found.", pkg_config.name
+        )
+        return False
+
+    if not pkg_config.is_provider and not any(
+        artifact.variant_alias for artifact in wheel_files
+    ):
+        logger.warning(
+            "Ignoring `%s`: no compatible variant releases for v0.2.0.",
+            pkg_config.name,
+        )
+        return False
 
     # Render template
     output = template.render(
         project_name=pkg_config.name,
         variants_json_files=sorted(
-            [
-                VariantJson.from_file(fp)
-                for fp in (BUILD_DIR / pkg_config.name).glob("*.json")
-            ],
+            accepted_json_files,
             key=lambda vf: (Version(vf.name.split("-", maxsplit=2)[1]), vf.name),
             reverse=True,
         ),
@@ -358,8 +390,9 @@ def generate_project_index(pkg_config: PkgConfig) -> None:
         build_date=BUILD_DATE,
     )
 
-    project_dir = BUILD_DIR / pkg_config.name
     project_dir.mkdir(exist_ok=True, parents=True)
 
     with (project_dir / "index.html").open(mode="w") as f:
         f.write(output)
+
+    return True
