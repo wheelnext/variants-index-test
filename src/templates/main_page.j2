@@ -284,27 +284,6 @@ url = "https://wheelnext.github.io/variants-index-test/v0.0.3/"</code></pre>
         </a>
     </footer>
 
-    <script>
-        function openTab(evt, tabId) {
-            const contents = document.querySelectorAll('.tab-content');
-            const buttons = document.querySelectorAll('.tab-btn');
-            contents.forEach(c => c.classList.remove('active'));
-            buttons.forEach(b => b.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
-
-        function copyCode(codeId) {
-            const code = document.getElementById(codeId).innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                const btn = event.currentTarget;
-                const original = btn.innerText;
-                btn.innerText = "Copied!";
-                setTimeout(() => btn.innerText = original, 2000);
-            });
-        }
-    </script>
-
 </body>
 
 </html>

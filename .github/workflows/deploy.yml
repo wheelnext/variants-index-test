@@ -4,12 +4,10 @@ on:
   push:
     branches:
       - master
-      - v0.0.2
 
   workflow_dispatch:
 
 jobs:
-
   build-index:
     permissions:
       contents: write # Needed for GH pages updates
@@ -26,11 +24,17 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v5
         with:
-          python-version: "3.13" 
-          
+          python-version: "3.13"
+
       - name: Install the package and test dependencies
         run: |
           uv sync --frozen
+
+      - name: Run regression tests and lint
+        run: |
+          make test
+          uv run --frozen ruff check .
+          uv run --frozen ruff format --check .
 
       - name: Build site
         run: |
@@ -48,14 +52,14 @@ jobs:
 
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          
-          rm -rf "${commit}/"
+
+          rm -rf "${commit:?}/"
           mkdir "$commit"
           cp -r build/* "./$commit"
           git add "$commit"
-          
+
           version_dir="v${version}"
-          rm -rf "${version_dir}/"
+          rm -rf "${version_dir:?}/"
           mkdir "$version_dir"
           cp -r build/* "./$version_dir"
           git add "$version_dir"

@@ -6,16 +6,26 @@ maintainers = [
 ]
 registry = "https://pypi.anaconda.org/mgorny/simple/"
 packages = [
-    "blas-lapack-variant-provider",
     "numpy",
-    "openmp-variant-provider",
-    "provider-variant-aarch64",
-    "provider-variant-x86-64",
     "scikit-learn",
     "scipy"
 ]
 
-[[index]]
+[[provider-index]]
+name = "quansight"
+maintainers = [
+    { name = "Michał Górny", email = "mgorny@quansight.com" },
+    { name = "Ralf Gommers", email = "rgommers@quansight.com" },
+]
+registry = "https://pypi.anaconda.org/mgorny/simple/"
+packages = [
+    "blas-lapack-variant-provider",
+    "openmp-variant-provider",
+    "provider-variant-aarch64",
+    "provider-variant-x86-64"
+]
+
+[[provider-index]]
 name = "nvidia-provider"
 maintainers = [
     { name = "Jonathan Dekhtiar", email = "jdekhtiar@nvidia.com" },
@@ -140,7 +150,7 @@ packages = [
     "xgboost"
 ]
 
-[[index]]
+[[provider-index]]
 name = "intel-provider"
 maintainers = [
     {name = "Chuanqi Wang", email = "chuanqi.wang@intel.com"},
@@ -151,7 +161,7 @@ packages = [
     "intel-variant-provider",
 ]
 
-[[index]]
+[[provider-index]]
 name = "amd-provider"
 maintainers = [
     {name = "Jithun Nair", email = "jithun.nair@amd.com"},
@@ -159,4 +169,26 @@ maintainers = [
 registry = "https://wheelnext.github.io/amd-variant-provider/"
 packages = [
     "amd-variant-provider",
+]
+
+[[index]]
+name = "huawei-ascend"
+maintainers = [
+    {name = "Zhihang Deng", email = "zhihangdeng@link.cuhk.edu.cn"},
+    {name = "Weijun Lu", email = "luweijun1@huawei.com"}
+]
+registry = "https://mirrors.huaweicloud.com/ascend/repos/pypi/variant/"
+packages = [
+    "vllm-ascend"
+]
+
+[[provider-index]]
+name = "huawei-ascend"
+maintainers = [
+    {name = "Zhihang Deng", email = "zhihangdeng@link.cuhk.edu.cn"},
+    {name = "Weijun Lu", email = "luweijun1@huawei.com"}
+]
+registry = "https://mirrors.huaweicloud.com/ascend/repos/pypi/variant/"
+packages = [
+    "huawei-ascend-variant-provider"
 ]

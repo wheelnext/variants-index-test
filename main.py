@@ -14,7 +14,7 @@ from src.build import generate_project_index
 CONFIG_FILEPATH = Path("index.toml")
 
 
-if __name__ == "__main__":
+def main() -> None:
     with CONFIG_FILEPATH.open(mode="r", encoding="utf-8") as f:
         config = tomlkit.parse(f.read())
 
@@ -22,26 +22,35 @@ if __name__ == "__main__":
 
     # Validate no 2 indexes are declared to
     # be authoritative for the same package:
-    for index_cfg in config["index"]:
-        for package_name in index_cfg["packages"]:
-            if (package_name) in packages:
-                raise ValueError(
-                    f"Package `{package_name}` is declared for two indexes:"
-                    f"\n\t- {packages[package_name].registry}"
-                    f"\n\t- {index_cfg['registry']}"
-                )
+    for index_type in ("index", "provider-index"):
+        for index_cfg in config.get(index_type, []):
+            for package_name in index_cfg["packages"]:
+                if package_name in packages:
+                    raise ValueError(
+                        f"Package `{package_name}` is declared for two indexes:"
+                        f"\n\t- {packages[package_name].registry}"
+                        f"\n\t- {index_cfg['registry']}"
+                    )
 
-            packages[package_name] = PkgConfig(
-                name=package_name,
-                registry=index_cfg["registry"],
-            )
+                packages[package_name] = PkgConfig(
+                    name=package_name,
+                    registry=index_cfg["registry"],
+                    is_provider=index_type == "provider-index",
+                )
 
     with contextlib.suppress(FileNotFoundError):
         shutil.rmtree(BUILD_DIR)
 
     BUILD_DIR.mkdir(exist_ok=True, parents=True)
 
-    for package in sorted(packages.values(), key=lambda x: x.name):
-        generate_project_index(package)
+    included_packages = [
+        package.name
+        for package in sorted(packages.values(), key=lambda x: x.name)
+        if generate_project_index(package)
+    ]
 
-    generate_main_index(packages=list(packages.keys()))
+    generate_main_index(packages=included_packages)
+
+
+if __name__ == "__main__":
+    main()
